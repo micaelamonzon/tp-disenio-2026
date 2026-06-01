@@ -1,15 +1,11 @@
-package ar.edu.utn.frba.ddsi.donaciones.models.entities.bien;
+package ar.edu.utn.frba.ddsi.models.entities.persona;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.time.LocalDateTime;
-
-@Setter
-@Getter
+@Data
 public class Subcategoria {
     private String nombre;
-    private Boolean esPerecedero;
+    private boolean esPerecedero;
     private Categoria categoria;
 
     public Subcategoria(String nombre, Boolean esPerecedero, Categoria categoria){
@@ -18,6 +14,4 @@ public class Subcategoria {
         this.categoria = categoria;
 
     }
-
-
 }
