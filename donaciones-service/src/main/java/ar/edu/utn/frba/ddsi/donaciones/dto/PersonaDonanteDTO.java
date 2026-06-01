@@ -1,4 +1,4 @@
-package ar.edu.utn.frba.ddsi.dto;
+package ar.edu.utn.frba.ddsi.donaciones.dto;
 
 import java.util.List;
 
@@ -15,4 +15,6 @@ public record PersonaDonanteDTO (
         String cuit,
         String razonSocial,
         List<MisionDTO> misiones
-){}
+){
+
+}
