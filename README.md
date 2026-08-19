@@ -2,7 +2,7 @@
  
 Sistema de gestión y trazabilidad de donaciones para **UTN Solidaria**, la iniciativa de la Subsecretaría de Asuntos Estudiantiles de UTN FRBA. Trabajo Práctico Anual Integrador de la cátedra **Diseño de Sistemas de Información** (2026).
  
-> ⚠️ **Estado: en desarrollo.** Al ser un TP anual, el proyecto avanza por entregas incrementales. Hasta el momento están completas las **Entregas 1, 2 y 3**, y actualmente estoy trabajando en la **Entrega 4** (persistencia y maquetado de UI).
+> ⚠️ **Estado: en desarrollo.** Al ser un TP anual, el proyecto avanza por entregas incrementales. Hasta el momento están completas las **Entregas 1, 2 y 3**, y actualmente estamos trabajando en la **Entrega 4** (persistencia y maquetado de UI).
  
 ## Contexto
  
@@ -25,22 +25,26 @@ El sistema se compone de los siguientes servicios:
 - Importación masiva de donantes por CSV (>10.000 filas).
 - Primera iteración simulada del Servicio de Notificaciones.
 - Bocetos de interfaz de usuario.
+- 
 **Entrega 2 — Trazabilidad, asignación e incentivos**
 - Máquina de estados completa de una donación (En depósito → Asignación realizada → Lista para entregar → En traslado → Entregada / Entrega fallida / Vencida).
 - Algoritmos de asignación (compatibilidad semántica y prioridad a sub-atendidos), ejecutados de forma asincrónica en horarios de baja carga.
 - Primera iteración del Servicio de Incentivos: métricas de actividad, misiones, insignias y categorías.
 - Integración real con medios de notificación (email/SMS/WhatsApp).
 - Exposición de las APIs REST de Donaciones e Incentivos.
+- 
 **Entrega 3 — Logística**
 - Planificación de rutas integrada con un componente externo (vía URL de callback, procesamiento en lotes de hasta 100 donaciones).
 - Trazabilidad completa de entregas (inicio de ruta, confirmación de recepción, entregas fallidas/replanificación).
 - Monitoreo de camiones en tiempo real (GPS o app móvil del conductor).
 - Integración entre Servicio de Donaciones y Servicio de Logística.
 - Eventos e notificaciones de inicio de ruta, entrega exitosa y entrega no satisfactoria.
+- 
 **Entrega 4 — En curso 🚧**
 - Persistencia de los modelos de cada servicio (relacional para Donaciones/Incentivos/Notificaciones, documental para Logística) usando ORM/ODM.
 - Estrategias de desnormalización para optimizar lecturas.
 - Maquetado e implementación en HTML/CSS de las interfaces de usuario diseñadas en la Entrega 1.
+- 
 **Próximas entregas**
 - Entrega 5: cliente liviano desacoplado con arquitectura MVC y servicio de autenticación.
 - Entrega 6: despliegue en la nube, observabilidad, seguridad, rate limiting, gRPC/GraphQL y (bonus) arquitectura de microservicios con API Gateway.
