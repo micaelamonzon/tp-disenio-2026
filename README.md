@@ -1,30 +1,49 @@
-# ddsi-tp-template
-
-Plantilla base para el trabajo práctico de DDSI (UTN FRBA). Implementa una arquitectura de servicios con Spring Boot y una biblioteca compartida, usando un reactor de Maven multi-módulo.
-
----
-
-## Requisitos previos
-
-- JDK 21
-- Maven 3.9+
-- Docker (opcional, solo para construir y ejecutar contenedores)
-
----
-
-## Estructura del repositorio
-
-```
-ddsi-tp-template/
-├── pom.xml                    # POM padre: versiones y dependencyManagement
-├── common-lib/                # Librería compartida (JAR), importada por los servicios
-├── donaciones-service/        # Servicio de donaciones — puerto 8080
-└── notificaciones-service/    # Cervicio de notificaciones — puerto 8081
-```
-
-Cada servicio es una aplicación Spring Boot independiente que declara `common-lib` como dependencia local del reactor.
-
----
+# DonaTrack 🎁
+ 
+Sistema de gestión y trazabilidad de donaciones para **UTN Solidaria**, la iniciativa de la Subsecretaría de Asuntos Estudiantiles de UTN FRBA. Trabajo Práctico Anual Integrador de la cátedra **Diseño de Sistemas de Información** (2026).
+ 
+> ⚠️ **Estado: en desarrollo.** Al ser un TP anual, el proyecto avanza por entregas incrementales. Hasta el momento están completas las **Entregas 1, 2 y 3**, y actualmente estoy trabajando en la **Entrega 4** (persistencia y maquetado de UI).
+ 
+## Contexto
+ 
+Una organización sin fines de lucro necesita ordenar y dar trazabilidad a las donaciones que recibe: desde que ingresan al depósito hasta que se entregan a una entidad beneficiaria. DonaTrack resuelve eso con una arquitectura distribuida en servicios.
+ 
+## Arquitectura
+ 
+El sistema se compone de los siguientes servicios:
+ 
+- **Servicio de Donaciones**: alta/baja/modificación de personas donantes (humanas o jurídicas), registro y segmentación automática de donaciones por subcategoría, gestión de entidades beneficiarias y sus necesidades (recurrentes/extraordinarias), trazabilidad de estados de una donación, algoritmos de asignación (matchmaking) entidad-donación.
+- **Servicio de Logística**: gestión de flota de camiones, planificación de rutas de entrega (integrado con un planificador externo), trazabilidad de entregas, monitoreo de camiones en tiempo real.
+- **Servicio de Incentivos**: analítica de donantes, sistema de misiones e insignias, categorías de donante (Colaborador / Sostenedor / Transformador), ranking mensual con difusión automática en redes sociales (flujo low-code).
+- **Servicio de Notificaciones**: envío de notificaciones (email, SMS, WhatsApp) ante eventos relevantes del sistema, integrado de forma asincrónica vía cola de mensajes.
+- **Servicio de Autenticación**: gestión de tokens de autorización.
+- **Frontend (SSR)**: cliente liviano desacoplado que consume las APIs REST de los demás servicios.
+## Funcionalidades implementadas por entrega
+ 
+**Entrega 1 — Modelado y dominio inicial**
+- Modelo de dominio de Donantes, Donaciones, Entidades Beneficiarias y Necesidades.
+- Importación masiva de donantes por CSV (>10.000 filas).
+- Primera iteración simulada del Servicio de Notificaciones.
+- Bocetos de interfaz de usuario.
+**Entrega 2 — Trazabilidad, asignación e incentivos**
+- Máquina de estados completa de una donación (En depósito → Asignación realizada → Lista para entregar → En traslado → Entregada / Entrega fallida / Vencida).
+- Algoritmos de asignación (compatibilidad semántica y prioridad a sub-atendidos), ejecutados de forma asincrónica en horarios de baja carga.
+- Primera iteración del Servicio de Incentivos: métricas de actividad, misiones, insignias y categorías.
+- Integración real con medios de notificación (email/SMS/WhatsApp).
+- Exposición de las APIs REST de Donaciones e Incentivos.
+**Entrega 3 — Logística**
+- Planificación de rutas integrada con un componente externo (vía URL de callback, procesamiento en lotes de hasta 100 donaciones).
+- Trazabilidad completa de entregas (inicio de ruta, confirmación de recepción, entregas fallidas/replanificación).
+- Monitoreo de camiones en tiempo real (GPS o app móvil del conductor).
+- Integración entre Servicio de Donaciones y Servicio de Logística.
+- Eventos e notificaciones de inicio de ruta, entrega exitosa y entrega no satisfactoria.
+**Entrega 4 — En curso 🚧**
+- Persistencia de los modelos de cada servicio (relacional para Donaciones/Incentivos/Notificaciones, documental para Logística) usando ORM/ODM.
+- Estrategias de desnormalización para optimizar lecturas.
+- Maquetado e implementación en HTML/CSS de las interfaces de usuario diseñadas en la Entrega 1.
+**Próximas entregas**
+- Entrega 5: cliente liviano desacoplado con arquitectura MVC y servicio de autenticación.
+- Entrega 6: despliegue en la nube, observabilidad, seguridad, rate limiting, gRPC/GraphQL y (bonus) arquitectura de microservicios con API Gateway.
 
 ## Tecnologías
 
